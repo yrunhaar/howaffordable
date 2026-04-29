@@ -25,7 +25,7 @@ export default function AffordabilityResultView({ country, result, onRecalculate
   };
 
   return (
-    <section className="max-w-3xl mx-auto px-4 mt-10 space-y-8">
+    <section className="w-full space-y-8">
       <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6 text-center">
         <p className="text-sm uppercase tracking-wider text-text-muted">{t.result.heading}</p>
         <p className="text-4xl md:text-5xl font-bold my-3 text-text-primary">

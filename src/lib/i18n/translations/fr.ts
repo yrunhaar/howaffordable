@@ -11,7 +11,7 @@ export const fr: Dictionary = {
       "Prix réels, revenus réels, taux d'intérêt réels. Voyez votre score d'accessibilité dans votre pays et dans 47 autres. Sans inscription.",
   },
   nav: {
-    home: "Calculateur",
+    home: "À quel point abordable ?",
     compare: "Comparer les pays",
     methodology: "Méthodologie",
     faq: "FAQ",
@@ -103,7 +103,7 @@ export const fr: Dictionary = {
     perYear: "par an",
     perMonth: "par mois",
     years: "ans",
-    loading: "Chargement...",
+    loading: "Chargement. .",
     errorTitle: "Quelque chose a mal tourné",
     errorBody: "Rechargez la page. Si le problème persiste, ouvrez un ticket sur GitHub.",
   },

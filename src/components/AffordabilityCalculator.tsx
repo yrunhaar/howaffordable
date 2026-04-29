@@ -49,9 +49,9 @@ export default function AffordabilityCalculator({ initialCountry }: Props) {
   }
 
   return (
-    <section className="max-w-3xl mx-auto px-4 mt-10">
+    <section className="w-full">
       <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6">
-        <h2 className="text-2xl mb-2">{t.calculator.heading}</h2>
+        <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-2">{t.calculator.heading}</h2>
         <p className="text-text-muted mb-6">{t.calculator.intro}</p>
 
         <CountrySelectMini value={countryCode} onChange={onCountryChange} label={t.home.chooseCountryLabel} />

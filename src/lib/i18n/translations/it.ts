@@ -11,7 +11,7 @@ export const it: Dictionary = {
       "Prezzi reali, redditi reali, tassi di interesse reali. Vedi il tuo punteggio di accessibilità nel tuo paese e in altri 47. Senza login.",
   },
   nav: {
-    home: "Calcolatore",
+    home: "Quanto è accessibile?",
     compare: "Confronta paesi",
     methodology: "Metodologia",
     faq: "FAQ",
@@ -103,7 +103,7 @@ export const it: Dictionary = {
     perYear: "all'anno",
     perMonth: "al mese",
     years: "anni",
-    loading: "Caricamento...",
+    loading: "Caricamento. .",
     errorTitle: "Qualcosa è andato storto",
     errorBody: "Ricarica la pagina. Se il problema persiste, apri una segnalazione su GitHub.",
   },

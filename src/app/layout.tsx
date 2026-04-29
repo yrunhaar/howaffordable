@@ -26,11 +26,11 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   metadataBase: new URL("https://howaffordable.org"),
   title: {
-    default: "How Affordable? — Housing Affordability Calculator",
+    default: "How Affordable? · Housing Affordability Calculator",
     template: "%s | How Affordable?",
   },
   description:
-    "Can you afford a house? Income and savings in — affordable home price, years to a down payment, and how that compares since 1990 — out. Open OECD/BIS data for 47 countries, 8 languages, no tracking.",
+    "Can you afford a house? Enter income and savings, see your affordable home price, years to a down payment, and how affordability has shifted since 1990. Open OECD/BIS data for 47 countries, 8 languages, no tracking.",
   keywords: [
     "how affordable",
     "housing affordability calculator",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "How Affordable? — Housing Affordability Calculator",
+    title: "How Affordable? · Housing Affordability Calculator",
     description:
       "Real prices, real incomes, real interest rates. See your affordability score in your country and across 47 others.",
     siteName: "How Affordable?",
@@ -65,13 +65,13 @@ export const metadata: Metadata = {
         url: "https://howaffordable.org/og-image.png",
         width: 1200,
         height: 630,
-        alt: "How Affordable? — Housing affordability across countries",
+        alt: "How Affordable? Housing affordability across countries",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "How Affordable? — Housing Affordability Calculator",
+    title: "How Affordable? · Housing Affordability Calculator",
     description:
       "Real prices, real incomes, real interest rates. See where your money goes furthest.",
     images: ["https://howaffordable.org/og-image.png"],
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Inline boot script — set theme before React hydration to prevent flash.
+ * Inline boot script. set theme before React hydration to prevent flash.
  * Resolution order:
  *   1. user's stored preference (localStorage 'theme'),
  *   2. system preference if explicitly dark (prefers-color-scheme: dark),
@@ -103,7 +103,7 @@ const themeScript = `
   (function() {
     try {
       var stored = localStorage.getItem('theme');
-      var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var theme = stored || 'light';
       document.documentElement.setAttribute('data-theme', theme);
     } catch(e) {
       document.documentElement.setAttribute('data-theme', 'light');
@@ -144,7 +144,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen">
         <ThemeProvider>
           <LanguageProvider>
             <Navigation />

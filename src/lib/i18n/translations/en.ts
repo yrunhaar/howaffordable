@@ -11,7 +11,7 @@ export const en: Dictionary = {
       "Real prices, real incomes, real interest rates. See your affordability score in your country and across 47 others. No login.",
   },
   nav: {
-    home: "Calculator",
+    home: "How Affordable?",
     compare: "Compare countries",
     methodology: "Methodology",
     faq: "FAQ",
@@ -22,7 +22,7 @@ export const en: Dictionary = {
   home: {
     headline: "Can you afford a house?",
     subheadline:
-      "Income and savings in. Affordable home price, years to a down payment, and how that compares to 1990 — out.",
+      "Enter your income and savings. We tell you what kind of home that buys, how many years it takes to save the down payment, and how affordability has shifted since 1990.",
     chooseCountryLabel: "Where do you live?",
   },
   calculator: {
@@ -31,7 +31,7 @@ export const en: Dictionary = {
     incomeLabel: "Annual household income (after tax)",
     incomeHelp: "Combined take-home pay for everyone in the household.",
     savingsLabel: "Savings available for a down payment",
-    savingsHelp: "Liquid savings only — not retirement funds.",
+    savingsHelp: "Liquid savings only; not retirement funds.",
     debtLabel: "Existing monthly debt obligations",
     debtHelp: "Student loans, car loans, credit-card minimums. Not rent.",
     mortgageYearsLabel: "Mortgage term (years)",
@@ -103,7 +103,7 @@ export const en: Dictionary = {
     perYear: "per year",
     perMonth: "per month",
     years: "years",
-    loading: "Loading...",
+    loading: "Loading. .",
     errorTitle: "Something went wrong",
     errorBody: "Refresh the page. If it keeps happening, please open an issue on GitHub.",
   },

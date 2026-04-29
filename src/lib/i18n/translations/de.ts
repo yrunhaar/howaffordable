@@ -11,7 +11,7 @@ export const de: Dictionary = {
       "Echte Preise, echte Einkommen, echte Zinsen. Sehen Sie Ihren Erschwinglichkeitswert in Ihrem Land und in 47 weiteren. Kein Login.",
   },
   nav: {
-    home: "Rechner",
+    home: "Wie bezahlbar?",
     compare: "Länder vergleichen",
     methodology: "Methodik",
     faq: "FAQ",
@@ -103,7 +103,7 @@ export const de: Dictionary = {
     perYear: "pro Jahr",
     perMonth: "pro Monat",
     years: "Jahre",
-    loading: "Wird geladen...",
+    loading: "Wird geladen. .",
     errorTitle: "Etwas ist schiefgelaufen",
     errorBody: "Laden Sie die Seite neu. Wenn es weiter auftritt, öffnen Sie bitte ein Issue auf GitHub.",
   },

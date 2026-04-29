@@ -11,20 +11,31 @@ interface Props {
 export default function HomeClient({ initialCountry }: Props) {
   const t = useDictionary();
   return (
-    <>
-      <section className="max-w-3xl mx-auto px-4 pt-12 md:pt-20 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">{t.home.headline}</h1>
-        <p className="mt-4 text-lg text-text-muted">{t.home.subheadline}</p>
-        <div className="mt-6 inline-flex flex-wrap justify-center gap-2 text-xs text-text-muted">
-          <span className="px-2 py-1 rounded-full bg-accent-periwinkle/15">
-            🌍 OECD avg price-to-income {GLOBAL_ANCHORS.oecdAveragePriceToIncome}×
-          </span>
-          <span className="px-2 py-1 rounded-full bg-accent-periwinkle/15">
-            📉 Historical (90-10): {GLOBAL_ANCHORS.historicalPriceToIncome}×
-          </span>
+    <main className="min-h-screen pt-14">
+      <section className="px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 pb-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            {t.home.headline}
+          </h1>
+          <p className="text-text-secondary text-lg sm:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
+            {t.home.subheadline}
+          </p>
+          <div className="mt-8 inline-flex flex-wrap justify-center gap-2 text-xs text-text-muted">
+            <span className="px-3 py-1.5 rounded-full bg-accent-periwinkle/15 text-accent-periwinkle border border-accent-periwinkle/30">
+              🌍 OECD avg price-to-income {GLOBAL_ANCHORS.oecdAveragePriceToIncome}×
+            </span>
+            <span className="px-3 py-1.5 rounded-full bg-accent-sage/15 text-accent-sage border border-accent-sage/30">
+              📉 Historical (90-10): {GLOBAL_ANCHORS.historicalPriceToIncome}×
+            </span>
+          </div>
         </div>
       </section>
-      <AffordabilityCalculator initialCountry={initialCountry} />
-    </>
+
+      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-3xl mx-auto">
+          <AffordabilityCalculator initialCountry={initialCountry} />
+        </div>
+      </section>
+    </main>
   );
 }

@@ -11,7 +11,7 @@ export const zhCn: Dictionary = {
       "真实的房价、真实的收入、真实的利率。查看你在自己国家以及另外47个国家的购房负担分数。无需登录。",
   },
   nav: {
-    home: "计算器",
+    home: "可负担吗？",
     compare: "比较国家",
     methodology: "方法论",
     faq: "常见问题",
@@ -103,7 +103,7 @@ export const zhCn: Dictionary = {
     perYear: "每年",
     perMonth: "每月",
     years: "年",
-    loading: "加载中...",
+    loading: "加载中. .",
     errorTitle: "出了点问题",
     errorBody: "请刷新页面。如果问题持续出现，请在GitHub上提交issue。",
   },

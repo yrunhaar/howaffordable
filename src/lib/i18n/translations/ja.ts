@@ -11,7 +11,7 @@ export const ja: Dictionary = {
       "本当の価格、本当の収入、本当の金利。あなたの国と他47カ国での住宅取得スコアを確認できます。ログイン不要。",
   },
   nav: {
-    home: "計算ツール",
+    home: "どれくらい手頃？",
     compare: "国を比較",
     methodology: "方法論",
     faq: "FAQ",
@@ -103,7 +103,7 @@ export const ja: Dictionary = {
     perYear: "年あたり",
     perMonth: "月あたり",
     years: "年",
-    loading: "読み込み中...",
+    loading: "読み込み中. .",
     errorTitle: "問題が発生しました",
     errorBody: "ページを再読み込みしてください。それでも続く場合は、GitHubでissueを開いてください。",
   },

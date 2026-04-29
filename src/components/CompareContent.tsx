@@ -27,14 +27,15 @@ export default function CompareContent() {
   };
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-12">
-      <header className="mb-8">
-        <h1 className="text-4xl mb-3">Compare countries</h1>
-        <p className="text-lg text-text-muted">
+    <main className="bg-bg-primary text-text-primary min-h-screen pt-20 pb-16 px-4">
+      <article className="max-w-3xl mx-auto">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4">
+          Compare countries
+        </h1>
+        <p className="text-text-secondary text-lg leading-relaxed mb-10">
           Pick countries side-by-side. Median home price, median household income,
           and the resulting price-to-income ratio.
         </p>
-      </header>
 
       <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6 mb-6 flex flex-wrap items-center gap-2">
         {picks.map((code) => (
@@ -117,6 +118,7 @@ export default function CompareContent() {
         Data: OECD Housing Database (Q4 2024), BIS Selected Property Price Series, national central banks.
         Country medians, not city. London / Paris / Tokyo / Sydney are 1.5-2.5× their national medians.
       </p>
-    </article>
+      </article>
+    </main>
   );
 }

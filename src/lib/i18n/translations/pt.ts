@@ -11,7 +11,7 @@ export const pt: Dictionary = {
       "Preços reais, rendimentos reais, taxas de juro reais. Veja a sua pontuação de acessibilidade no seu país e em outros 47. Sem registo.",
   },
   nav: {
-    home: "Calculadora",
+    home: "Quão acessível?",
     compare: "Comparar países",
     methodology: "Metodologia",
     faq: "FAQ",
@@ -103,7 +103,7 @@ export const pt: Dictionary = {
     perYear: "por ano",
     perMonth: "por mês",
     years: "anos",
-    loading: "A carregar...",
+    loading: "A carregar. .",
     errorTitle: "Algo correu mal",
     errorBody: "Recarregue a página. Se persistir, abra uma issue no GitHub.",
   },

@@ -60,6 +60,38 @@ export interface Dictionary {
     readonly compareCountry: string;
     readonly compareOECD: string;
     readonly compareHistoric: string;
+    /** A 2-3 sentence narrative interpreting personal ceiling vs country median. */
+    readonly narrativeHeading: string;
+    readonly narrativeBody: string;
+    /** Mortgage burden chart (% of income) */
+    readonly burdenHeading: string;
+    readonly burdenIntro: string;
+    readonly burdenComfortable: string;
+    readonly burdenManageable: string;
+    readonly burdenStretched: string;
+    readonly burdenOverLimit: string;
+    readonly burdenYouLabel: string;
+    /** Historical chart */
+    readonly historyHeading: string;
+    readonly historyIntro: string;
+    readonly historyAffordabilityShiftTemplate: string;
+    /** Cross-country snapshot */
+    readonly crossHeading: string;
+    readonly crossIntro: string;
+    readonly crossColumnCountry: string;
+    readonly crossColumnAffordable: string;
+    readonly crossColumnRatio: string;
+    readonly crossColumnVerdict: string;
+    /** Buy vs rent */
+    readonly rentHeading: string;
+    readonly rentIntro: string;
+    readonly rentMonthlyLabel: string;
+    readonly mortgageMonthlyOnMedianLabel: string;
+    readonly rentBuyDiffMore: string;
+    readonly rentBuyDiffLess: string;
+    /** Practical takeaways */
+    readonly takeawaysHeading: string;
+    readonly takeawaysIntro: string;
   };
   readonly chart: {
     readonly historicalHeading: string;

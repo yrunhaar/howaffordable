@@ -18,7 +18,7 @@ import {
 import { getDictionary, type Dictionary } from "@/lib/i18n";
 import { localePath, stripLocale } from "@/lib/i18n/urls";
 
-const LANGUAGE_STORAGE_KEY = "caniaffordahouse:locale";
+const LANGUAGE_STORAGE_KEY = "howaffordable:locale";
 
 interface LanguageContextValue {
   readonly locale: LocaleCode;

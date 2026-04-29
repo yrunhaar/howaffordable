@@ -1,4 +1,4 @@
-# canIaffordahouse.org
+# howaffordable.org
 
 Can I afford a house? An open, free, multi-language tool that takes your income and savings, then tells you what kind of home that buys in your country, how it compares to your parents' generation, and where in the world your money goes furthest.
 
@@ -40,7 +40,7 @@ pnpm test         # vitest
 Same design system, same data philosophy, different question:
 
 - howpoorami.org - personal wealth percentiles
-- mycarbonfootprint.org - your CO2 vs the world
+- howgreenami.org - your CO2 vs the world
 
 All three by Yohan Runhaar - https://yohanrunhaar.com
 

@@ -10,7 +10,7 @@ export interface AboutContent {
 }
 
 const en: AboutContent = {
-  h1: "About canIaffordahouse.org",
+  h1: "About howaffordable.org",
   intro:
     "A free, open tool that takes your income and savings and tells you what kind of home that buys in your country, how affordability has changed since 1990, and where in the world the same paycheck buys more roof. No login. No tracking. Static pages, all data baked at build time.",
   howItWorks: {
@@ -41,7 +41,7 @@ const en: AboutContent = {
   contact: {
     heading: "Who made this",
     body:
-      "Yohan Runhaar (yohanrunhaar.com), with help from open data communities. Same family as howpoorami.org and mycarbonfootprint.org.",
+      "Yohan Runhaar (yohanrunhaar.com), with help from open data communities. Same family as howpoorami.org and howgreenami.org.",
   },
 };
 

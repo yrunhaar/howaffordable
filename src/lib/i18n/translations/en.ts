@@ -3,7 +3,7 @@ import type { Dictionary } from "../dictionary";
 export const en: Dictionary = {
   meta: {
     siteTitle: "Can I afford a house?",
-    homeTitleTemplate: "Can I afford a house? | canIaffordahouse.org",
+    homeTitleTemplate: "Can I afford a house? | howaffordable.org",
     homeDescription:
       "A free, open tool that takes your income and savings and tells you what kind of home that buys in your country, how affordability changed since 1990, and where in the world your money goes furthest.",
     homeOgTitle: "Can I afford a house?",
@@ -84,7 +84,7 @@ export const en: Dictionary = {
       heading: "Sister projects",
       body: "Same design, different question.",
       howpoorami: "How poor am I?",
-      mycarbonfootprint: "How big is my carbon footprint?",
+      howgreenami: "How big is my carbon footprint?",
     },
   },
   footer: {

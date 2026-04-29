@@ -1,5 +1,5 @@
 /**
- * Dictionary shape for canIaffordahouse.org.
+ * Dictionary shape for howaffordable.org.
  * Every locale must provide every key.
  */
 
@@ -69,7 +69,7 @@ export interface Dictionary {
   readonly cta: {
     readonly support: { readonly heading: string; readonly body: string; readonly ctaLabel: string };
     readonly furtherReading: { readonly heading: string; readonly body: string; readonly ctaLabel: string; readonly disclosure: string };
-    readonly sister: { readonly heading: string; readonly body: string; readonly howpoorami: string; readonly mycarbonfootprint: string };
+    readonly sister: { readonly heading: string; readonly body: string; readonly howpoorami: string; readonly howgreenami: string };
   };
   readonly footer: {
     readonly tagline: string;

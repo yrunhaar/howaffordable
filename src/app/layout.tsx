@@ -26,8 +26,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Can I afford a house? | canIaffordahouse.org",
-    template: "%s | canIaffordahouse.org",
+    default: "Can I afford a house? | howaffordable.org",
+    template: "%s | howaffordable.org",
   },
   description:
     "A free, open tool that takes your income and savings and tells you what kind of home that buys, how affordability changed since 1990, and where in the world your money goes furthest.",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: "en_US",
     url: SITE_URL,
-    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: "canIaffordahouse.org" }],
+    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: "howaffordable.org" }],
   },
   twitter: {
     card: "summary_large_image",

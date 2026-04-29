@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     url: "https://howaffordable.org",
     images: [
       {
-        url: "https://howaffordable.org/og-image.png",
+        url: "https://howaffordable.org/opengraph-image",
         width: 1200,
         height: 630,
         alt: "How Affordable? Housing affordability across countries",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     title: "How Affordable? · Housing Affordability Calculator",
     description:
       "Real prices, real incomes, real interest rates. See where your money goes furthest.",
-    images: ["https://howaffordable.org/og-image.png"],
+    images: ["https://howaffordable.org/opengraph-image"],
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],

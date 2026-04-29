@@ -92,6 +92,12 @@ export const es: Dictionary = {
     source: "Fuentes de datos",
     license: "Licencia",
     madeBy: "Hecho por Yohan Runhaar",
+    about: "Acerca de",
+    faq: "Preguntas frecuentes",
+    methodology: "Metodología",
+    github: "GitHub",
+    support: "Invítame a un café",
+    buildDateTemplate: "Datos del {date}",
   },
   common: {
     perYear: "al año",

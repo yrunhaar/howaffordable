@@ -92,6 +92,12 @@ export const zhCn: Dictionary = {
     source: "数据来源",
     license: "许可协议",
     madeBy: "由Yohan Runhaar制作",
+    about: "关于",
+    faq: "常见问题",
+    methodology: "方法说明",
+    github: "GitHub",
+    support: "请我喝杯咖啡",
+    buildDateTemplate: "数据更新于 {date}",
   },
   common: {
     perYear: "每年",

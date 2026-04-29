@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -7,7 +7,7 @@ import SupportRail from "@/components/SupportRail";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { buildHreflangAlternates } from "@/lib/i18n/urls";
-import { SITE_URL, SITE_NAME, SITE_OG_IMAGE } from "@/lib/seo";
+import { SITE_URL } from "@/lib/seo";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-heading",
@@ -16,7 +16,7 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "700"],
 });
 
-const inter = Inter({
+const firaCode = Fira_Code({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -24,14 +24,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://howaffordable.org"),
   title: {
-    default: "Can I afford a house? | howaffordable.org",
-    template: "%s | howaffordable.org",
+    default: "How Affordable? — Housing Affordability Calculator",
+    template: "%s | How Affordable?",
   },
   description:
-    "A free, open tool that takes your income and savings and tells you what kind of home that buys, how affordability changed since 1990, and where in the world your money goes furthest.",
+    "Can you afford a house? Income and savings in — affordable home price, years to a down payment, and how that compares since 1990 — out. Open OECD/BIS data for 47 countries, 8 languages, no tracking.",
   keywords: [
+    "how affordable",
     "housing affordability calculator",
     "can I afford a house",
     "price to income ratio",
@@ -40,8 +41,12 @@ export const metadata: Metadata = {
     "down payment calculator",
     "housing crisis",
     "OECD housing data",
+    "BIS property prices",
     "median home price",
-    "housing affordability international comparison",
+    "median household income",
+    "international housing comparison",
+    "years to down payment",
+    "Demographia affordability",
   ],
   alternates: {
     canonical: SITE_URL,
@@ -49,34 +54,51 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Can I afford a house?",
+    title: "How Affordable? — Housing Affordability Calculator",
     description:
       "Real prices, real incomes, real interest rates. See your affordability score in your country and across 47 others.",
-    siteName: SITE_NAME,
+    siteName: "How Affordable?",
     locale: "en_US",
-    url: SITE_URL,
-    images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: "howaffordable.org" }],
+    url: "https://howaffordable.org",
+    images: [
+      {
+        url: "https://howaffordable.org/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "How Affordable? — Housing affordability across countries",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Can I afford a house?",
-    description: "Real prices, real incomes, real interest rates. See where your money goes furthest.",
-    images: [SITE_OG_IMAGE],
+    title: "How Affordable? — Housing Affordability Calculator",
+    description:
+      "Real prices, real incomes, real interest rates. See where your money goes furthest.",
+    images: ["https://howaffordable.org/og-image.png"],
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
+/**
+ * Inline boot script — set theme before React hydration to prevent flash.
+ * Resolution order:
+ *   1. user's stored preference (localStorage 'theme'),
+ *   2. system preference if explicitly dark (prefers-color-scheme: dark),
+ *   3. default to light.
+ */
 const themeScript = `
   (function() {
     try {
@@ -89,11 +111,15 @@ const themeScript = `
   })();
 `;
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfairDisplay.variable} ${firaCode.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -104,12 +130,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: SITE_NAME,
+              name: "How Affordable?",
               description:
-                "Free housing affordability calculator. See if you can afford a house in your country and how that compares globally.",
+                "Interactive housing affordability calculator with real OECD and BIS data across 47 countries.",
               applicationCategory: "FinanceApplication",
               operatingSystem: "Any",
-              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
             }),
           }}
         />
@@ -118,7 +148,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           <LanguageProvider>
             <Navigation />
-            <main className="flex-1">{children}</main>
+            {children}
             <SupportRail />
             <Footer />
           </LanguageProvider>

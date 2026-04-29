@@ -92,6 +92,12 @@ export const ja: Dictionary = {
     source: "データソース",
     license: "ライセンス",
     madeBy: "Yohan Runhaarが制作",
+    about: "概要",
+    faq: "よくある質問",
+    methodology: "手法",
+    github: "GitHub",
+    support: "コーヒーをおごる",
+    buildDateTemplate: "データ更新日 {date}",
   },
   common: {
     perYear: "年あたり",

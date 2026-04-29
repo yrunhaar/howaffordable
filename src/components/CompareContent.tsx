@@ -30,24 +30,24 @@ export default function CompareContent() {
     <article className="max-w-4xl mx-auto px-4 py-12">
       <header className="mb-8">
         <h1 className="text-4xl mb-3">Compare countries</h1>
-        <p className="text-lg text-[var(--muted)]">
+        <p className="text-lg text-text-muted">
           Pick countries side-by-side. Median home price, median household income,
           and the resulting price-to-income ratio.
         </p>
       </header>
 
-      <div className="card mb-6 flex flex-wrap items-center gap-2">
+      <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6 mb-6 flex flex-wrap items-center gap-2">
         {picks.map((code) => (
           <button
             key={code}
             type="button"
             onClick={() => removeCountry(code)}
             aria-label={`Remove ${COUNTRIES[code].name}`}
-            className="inline-flex items-center gap-1 rounded-full border border-[var(--border)] px-3 py-1 text-sm hover:border-[var(--accent)]"
+            className="inline-flex items-center gap-1 rounded-full border border-border-subtle px-3 py-1 text-sm hover:border-accent-periwinkle"
           >
             <span>{COUNTRIES[code].flag}</span>
             <span>{COUNTRIES[code].name}</span>
-            <span className="text-[var(--muted)]">×</span>
+            <span className="text-text-muted">×</span>
           </button>
         ))}
         <select
@@ -56,7 +56,7 @@ export default function CompareContent() {
             if (e.target.value) addCountry(e.target.value);
             e.currentTarget.value = "";
           }}
-          className="px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)]"
+          className="px-3 py-1 rounded-full border border-border-subtle bg-bg-card text-sm text-text-muted"
         >
           <option value="">+ Add country</option>
           {sorted.filter((c) => !picks.includes(c)).map((code) => (
@@ -67,10 +67,10 @@ export default function CompareContent() {
         </select>
       </div>
 
-      <div className="card overflow-x-auto">
+      <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-[var(--muted)] text-xs uppercase tracking-wider text-left border-b border-[var(--border)]">
+            <tr className="text-text-muted text-xs uppercase tracking-wider text-left border-b border-border-subtle">
               <th className="py-2 pr-3">Country</th>
               <th className="py-2 px-3 text-right">Median home</th>
               <th className="py-2 px-3 text-right">Median income</th>
@@ -89,21 +89,21 @@ export default function CompareContent() {
               .map((c) => {
                 const ratio = c.medianHomePrice / c.medianHouseholdIncome;
                 return (
-                  <tr key={c.code} className="border-b border-[var(--border)]/50">
+                  <tr key={c.code} className="border-b border-border-subtle/50">
                     <td className="py-3 pr-3">
                       <span className="mr-2">{c.flag}</span>
-                      <span className="text-[var(--fg)]">{c.name}</span>
+                      <span className="text-text-primary">{c.name}</span>
                     </td>
-                    <td className="py-3 px-3 text-right text-[var(--fg)] font-semibold">
+                    <td className="py-3 px-3 text-right text-text-primary font-semibold">
                       {formatCurrency(c.medianHomePrice, c.currency, locale)}
                     </td>
-                    <td className="py-3 px-3 text-right text-[var(--muted)]">
+                    <td className="py-3 px-3 text-right text-text-muted">
                       {formatCurrency(c.medianHouseholdIncome, c.currency, locale)}
                     </td>
                     <td className="py-3 px-3 text-right">
-                      <span className="font-semibold text-[var(--accent)]">{formatNumber(ratio, locale)}×</span>
+                      <span className="font-semibold text-accent-periwinkle">{formatNumber(ratio, locale)}×</span>
                     </td>
-                    <td className="py-3 pl-3 text-right text-[var(--muted)]">
+                    <td className="py-3 pl-3 text-right text-text-muted">
                       {c.mortgageRatePct.toFixed(2)}%
                     </td>
                   </tr>
@@ -113,7 +113,7 @@ export default function CompareContent() {
         </table>
       </div>
 
-      <p className="mt-6 text-xs text-[var(--muted)]">
+      <p className="mt-6 text-xs text-text-muted">
         Data: OECD Housing Database (Q4 2024), BIS Selected Property Price Series, national central banks.
         Country medians, not city. London / Paris / Tokyo / Sydney are 1.5-2.5× their national medians.
       </p>

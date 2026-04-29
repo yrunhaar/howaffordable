@@ -50,9 +50,9 @@ export default function AffordabilityCalculator({ initialCountry }: Props) {
 
   return (
     <section className="max-w-3xl mx-auto px-4 mt-10">
-      <div className="card">
+      <div className="rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6">
         <h2 className="text-2xl mb-2">{t.calculator.heading}</h2>
-        <p className="text-[var(--muted)] mb-6">{t.calculator.intro}</p>
+        <p className="text-text-muted mb-6">{t.calculator.intro}</p>
 
         <CountrySelectMini value={countryCode} onChange={onCountryChange} label={t.home.chooseCountryLabel} />
 
@@ -97,14 +97,14 @@ export default function AffordabilityCalculator({ initialCountry }: Props) {
           <button
             type="button"
             onClick={() => setShowResult(true)}
-            className="px-5 py-2 rounded-lg bg-[var(--accent)] text-white font-semibold"
+            className="px-5 py-2 rounded-lg bg-accent-periwinkle text-white font-semibold"
           >
             {t.calculator.seeResults} →
           </button>
         </div>
       </div>
 
-      <div className="mt-6 text-center text-sm text-[var(--muted)]">
+      <div className="mt-6 text-center text-sm text-text-muted">
         Anchor: {country.anchorCity} median {country.medianHomePrice.toLocaleString()} {country.currency} ·{" "}
         mortgage rate {country.mortgageRatePct.toFixed(2)}% · min down {Math.round(country.minDownPaymentFraction * 100)}%
       </div>
@@ -123,11 +123,11 @@ function CountrySelectMini({
 }) {
   return (
     <label className="block">
-      <span className="block text-sm text-[var(--muted)] mb-1">{label}</span>
+      <span className="block text-sm text-text-muted mb-1">{label}</span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--fg)]"
+        className="w-full px-3 py-2 rounded-lg border border-border-subtle bg-bg-card text-text-primary"
       >
         {COUNTRY_CODES.sort((a, b) => COUNTRIES[a].name.localeCompare(COUNTRIES[b].name)).map((code) => (
           <option key={code} value={code}>
@@ -154,8 +154,8 @@ function NumberField({
 }) {
   return (
     <label className="block">
-      <span className="block text-sm font-medium text-[var(--fg)]">{label}</span>
-      {help && <span className="block text-xs text-[var(--muted)] mt-0.5">{help}</span>}
+      <span className="block text-sm font-medium text-text-primary">{label}</span>
+      {help && <span className="block text-xs text-text-muted mt-0.5">{help}</span>}
       <input
         type="number"
         inputMode="numeric"
@@ -166,7 +166,7 @@ function NumberField({
           const n = Number(e.target.value);
           onChange(Number.isFinite(n) ? n : 0);
         }}
-        className="mt-1 w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--fg)]"
+        className="mt-1 w-full px-3 py-2 rounded-lg border border-border-subtle bg-bg-card text-text-primary"
       />
     </label>
   );

@@ -3,8 +3,6 @@
 import {
   COUNTRIES,
   COUNTRY_CODES,
-  GLOBAL_ANCHORS,
-  type CountryCode,
   type CountryHousingData,
 } from "@/data/housing-data";
 import {
@@ -12,7 +10,9 @@ import {
   OECD_AVERAGE,
 } from "@/data/historical-affordability";
 import { formatCurrency } from "@/lib/format";
-import { useLanguage } from "./LanguageProvider";
+import { useDictionary, useLanguage } from "./LanguageProvider";
+import { interpolate } from "@/lib/i18n";
+import { localizedCountryName } from "@/lib/i18n/country-names";
 import AffordabilityCalculator from "./AffordabilityCalculator";
 
 interface Props {
@@ -20,16 +20,14 @@ interface Props {
 }
 
 /**
- * Country-specific landing page. Used at `/{country}` and `/{locale}/{country}`.
- *
- * Above the fold: per-country headline (median home, median income,
- * price-to-income ratio, mortgage rate), affordability verdict, a 2-3
- * sentence narrative, then the calculator pre-selected for that country.
+ * Country-specific landing page rendered at `/{country}` and
+ * `/{locale}/{country}`. All copy reads from `t.country.*` so each locale
+ * presents native text and Google indexes it as a real translated page.
  */
 export default function CountryHome({ country }: Props) {
+  const t = useDictionary();
   const { locale } = useLanguage();
 
-  // Rank vs all countries by price-to-income (1 = most expensive)
   const ratio = country.medianHomePrice / country.medianHouseholdIncome;
   const ranked = [...COUNTRY_CODES]
     .map((c) => ({
@@ -42,12 +40,14 @@ export default function CountryHome({ country }: Props) {
 
   const verdict =
     ratio < 4
-      ? { color: "var(--accent-sage)", label: "Affordable by historical standards" }
+      ? { color: "var(--accent-sage)", label: t.country.verdictAffordable }
       : ratio < 6
-        ? { color: "var(--accent-periwinkle)", label: "A stretch — above the historical norm" }
+        ? { color: "var(--accent-periwinkle)", label: t.country.verdictStretch }
         : ratio < 10
-          ? { color: "var(--accent-amber)", label: "Unaffordable — by Demographia's classification" }
-          : { color: "var(--accent-rose)", label: "Out of reach for the median household" };
+          ? { color: "var(--accent-amber)", label: t.country.verdictUnaffordable }
+          : { color: "var(--accent-rose)", label: t.country.verdictOutOfReach };
+
+  const localeName = localizedCountryName(country.code, locale, country.name);
 
   const histSeries = HISTORICAL_PRICE_TO_INCOME[country.code] ?? [];
   const oldestPoint = histSeries[0] ?? null;
@@ -62,16 +62,22 @@ export default function CountryHome({ country }: Props) {
     oldestPoint && ratio > 0
       ? Math.round((oldestPoint.priceToIncome / ratio) * 100)
       : null;
+  const shiftNarrative = oldestPoint && shiftPct !== null
+    ? interpolate(t.country.historyShiftTemplate, {
+        startYear: oldestPoint.year,
+        pct: shiftPct,
+      })
+    : "";
 
   return (
     <main className="min-h-screen pt-14">
       <section className="px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 pb-8">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm uppercase tracking-wider text-text-muted">
-            {country.flag} {country.name}
+            {country.flag} {localeName}
           </p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mt-2">
-            Can you afford a house in {country.name}?
+            {interpolate(t.country.headlineTemplate, { country: localeName })}
           </h1>
 
           <div className="mt-6 inline-flex flex-col items-center gap-3">
@@ -82,63 +88,55 @@ export default function CountryHome({ country }: Props) {
               {verdict.label}
             </div>
             <p className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-              The country median home in {country.name} costs{" "}
-              <strong className="text-text-primary">
-                {formatCurrency(country.medianHomePrice, country.currency, locale)}
-              </strong>{" "}
-              and the median household earns{" "}
-              <strong className="text-text-primary">
-                {formatCurrency(country.medianHouseholdIncome, country.currency, locale)}
-              </strong>{" "}
-              — a price-to-income ratio of{" "}
-              <strong className="text-text-primary">{ratio.toFixed(1)}×</strong>. Ranked{" "}
-              <strong className="text-text-primary">{rank}</strong> of {total} for housing
-              cost relative to income.
+              {interpolate(t.country.bodyTemplate, {
+                country: localeName,
+                price: formatCurrency(country.medianHomePrice, country.currency, locale),
+                income: formatCurrency(country.medianHouseholdIncome, country.currency, locale),
+                ratio: ratio.toFixed(1),
+                rank,
+                total,
+              })}
             </p>
           </div>
         </div>
 
         <div className="max-w-4xl mx-auto mt-10 grid sm:grid-cols-3 gap-4">
           <StatCard
-            label="Median home price"
+            label={t.country.statMedianHomeLabel}
             value={formatCurrency(country.medianHomePrice, country.currency, locale)}
-            sub={country.anchorCity}
+            sub={interpolate(t.country.statMedianHomeSub, { anchor: country.anchorCity })}
           />
           <StatCard
-            label="Median household income"
+            label={t.country.statMedianIncomeLabel}
             value={formatCurrency(country.medianHouseholdIncome, country.currency, locale)}
-            sub="after tax"
+            sub={t.country.statMedianIncomeSub}
           />
           <StatCard
-            label="Avg mortgage rate"
+            label={t.country.statMortgageLabel}
             value={`${country.mortgageRatePct.toFixed(2)}%`}
-            sub={`min down ${Math.round(country.minDownPaymentFraction * 100)}%`}
+            sub={interpolate(t.country.statMortgageSub, { pct: Math.round(country.minDownPaymentFraction * 100) })}
           />
         </div>
 
         {histSeries.length > 0 && oldestPoint && peakPoint && (
           <div className="max-w-4xl mx-auto mt-10 rounded-2xl border border-border-subtle bg-bg-card shadow-card p-6">
             <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold mb-3">
-              How {country.name}&apos;s housing affordability evolved
+              {interpolate(t.country.historyHeading, { country: localeName })}
             </h2>
             <p className="text-text-secondary leading-relaxed">
-              Price-to-income peaked at{" "}
-              <strong className="text-text-primary">{peakPoint.priceToIncome.toFixed(1)}×</strong>{" "}
-              in {peakPoint.year}. Today: {ratio.toFixed(1)}×.
-              {shiftPct !== null && (
-                <>
-                  {" "}If you had today&apos;s income in {oldestPoint.year}, you could have
-                  afforded <strong className="text-text-primary">{shiftPct}%</strong> of today&apos;s
-                  purchasing power for the country median home.
-                </>
-              )}{" "}
-              The OECD average over the same period went from{" "}
-              {OECD_AVERAGE[0].priceToIncome.toFixed(1)}× in {OECD_AVERAGE[0].year} to{" "}
-              {OECD_AVERAGE[OECD_AVERAGE.length - 1].priceToIncome.toFixed(1)}× today.
+              {interpolate(t.country.historyBodyTemplate, {
+                peakValue: peakPoint.priceToIncome.toFixed(1),
+                peakYear: peakPoint.year,
+                todayValue: ratio.toFixed(1),
+                shift: shiftNarrative,
+                oecdStart: OECD_AVERAGE[0].priceToIncome.toFixed(1),
+                oecdYear: OECD_AVERAGE[0].year,
+                oecdToday: OECD_AVERAGE[OECD_AVERAGE.length - 1].priceToIncome.toFixed(1),
+              })}
             </p>
             <HistoricalSparkline
               series={histSeries}
-              countryName={country.name}
+              countryName={localeName}
               currentRatio={ratio}
             />
           </div>
@@ -148,11 +146,10 @@ export default function CountryHome({ country }: Props) {
       <section className="px-4 sm:px-6 lg:px-8 pt-2 pb-16">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl font-bold mb-2 text-center">
-            How affordable is {country.name} for you?
+            {interpolate(t.country.calculatorHeadingTemplate, { country: localeName })}
           </h2>
           <p className="text-text-secondary text-center max-w-2xl mx-auto leading-relaxed mb-8">
-            Enter your income and savings to see your personal max-affordable price,
-            years to a down payment, and how that compares to {country.name}&apos;s median.
+            {interpolate(t.country.calculatorSubheadingTemplate, { country: localeName })}
           </p>
           <AffordabilityCalculator initialCountry={country.code} />
         </div>
@@ -207,35 +204,11 @@ function HistoricalSparkline({
       role="img"
       aria-label={`${countryName} price-to-income over time`}
     >
-      <line
-        x1={PAD.left}
-        x2={W - PAD.right}
-        y1={H - PAD.bottom}
-        y2={H - PAD.bottom}
-        stroke="var(--border-subtle)"
-        strokeWidth={1}
-      />
-      <text x={PAD.left} y={H - 4} fontSize="10" fill="var(--text-muted)">
-        {minYear}
-      </text>
-      <text
-        x={W - PAD.right}
-        y={H - 4}
-        fontSize="10"
-        textAnchor="end"
-        fill="var(--text-muted)"
-      >
-        {maxYear}
-      </text>
+      <line x1={PAD.left} x2={W - PAD.right} y1={H - PAD.bottom} y2={H - PAD.bottom} stroke="var(--border-subtle)" strokeWidth={1} />
+      <text x={PAD.left} y={H - 4} fontSize="10" fill="var(--text-muted)">{minYear}</text>
+      <text x={W - PAD.right} y={H - 4} fontSize="10" textAnchor="end" fill="var(--text-muted)">{maxYear}</text>
       <path d={path} fill="none" stroke="var(--accent-periwinkle)" strokeWidth={2} />
-      <circle
-        cx={xScale(series[series.length - 1].year)}
-        cy={yScale(series[series.length - 1].priceToIncome)}
-        r={4}
-        fill="var(--accent-periwinkle)"
-        stroke="var(--bg-card)"
-        strokeWidth={2}
-      />
+      <circle cx={xScale(series[series.length - 1].year)} cy={yScale(series[series.length - 1].priceToIncome)} r={4} fill="var(--accent-periwinkle)" stroke="var(--bg-card)" strokeWidth={2} />
     </svg>
   );
 }

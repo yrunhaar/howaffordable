@@ -13,6 +13,7 @@ export const ja: Dictionary = {
   nav: {
     home: "どれくらい手頃？",
     compare: "国を比較",
+    report: "Report",
     methodology: "方法論",
     faq: "FAQ",
     about: "概要",
@@ -24,6 +25,29 @@ export const ja: Dictionary = {
     subheadline:
       "収入と貯蓄を入れる。買える家の価格、頭金までの年数、1990年との比較が出ます。",
     chooseCountryLabel: "お住まいはどこですか？",
+  },
+  country: {
+    headlineTemplate: "Can you afford a house in {country}?",
+    verdictAffordable: "Affordable by historical standards",
+    verdictStretch: "A stretch, above the historical norm",
+    verdictUnaffordable: "Unaffordable by Demographia's classification",
+    verdictOutOfReach: "Out of reach for the median household",
+    bodyTemplate:
+      "The country median home in {country} costs {price} and the median household earns {income}, a price-to-income ratio of {ratio}×. Ranked {rank} of {total} for housing cost relative to income.",
+    statMedianHomeLabel: "Median home price",
+    statMedianHomeSub: "{anchor}",
+    statMedianIncomeLabel: "Median household income",
+    statMedianIncomeSub: "after tax",
+    statMortgageLabel: "Avg mortgage rate",
+    statMortgageSub: "min down {pct}%",
+    historyHeading: "How {country}'s housing affordability evolved",
+    historyBodyTemplate:
+      "Price-to-income peaked at {peakValue}× in {peakYear}. Today: {todayValue}×. {shift} The OECD average over the same period went from {oecdStart}× in {oecdYear} to {oecdToday}× today.",
+    historyShiftTemplate:
+      "If you had today's income in {startYear}, you could have afforded {pct}% of today's purchasing power for the country median home.",
+    calculatorHeadingTemplate: "How affordable is {country} for you?",
+    calculatorSubheadingTemplate:
+      "Enter your income and savings to see your personal max-affordable price, years to a down payment, and how that compares to {country}'s median.",
   },
   calculator: {
     heading: "あなたの家計について教えてください",
@@ -124,6 +148,82 @@ export const ja: Dictionary = {
     github: "GitHub",
     support: "コーヒーをおごる",
     buildDateTemplate: "データ更新日 {date}",
+  },
+  report: {
+    title: "Personal Housing Affordability Report",
+    subtitle: "Real prices, real incomes, real interest rates — bound to your number.",
+    preparedFor: "Prepared for: {country}, {date}",
+    landingTitle: "Your Personal Housing Affordability Report",
+    landingFreeBadge: "Free. No signup, no payment, no email required",
+    landingFeatureA: {
+      title: "Your max-affordable price",
+      body:
+        "Computed from your income and savings, the country's mortgage rate, and a standard 36% debt-to-income ceiling. Plus the gap to the country median.",
+    },
+    landingFeatureB: {
+      title: "Country and historical context",
+      body:
+        "Where your country sits on the global affordability ladder, and how price-to-income evolved across decades.",
+    },
+    landingFeatureC: {
+      title: "Fully private",
+      body:
+        "The PDF is built in your browser. Nothing is sent to a server. No email, no account, no tracking.",
+    },
+    landingPicker: {
+      title: "Generate your report",
+      subtitle: "Pick a country, enter your income and savings, and we'll do the rest.",
+      countryLabel: "Country",
+      incomeLabel: "Annual household income (after tax)",
+      incomeHelp: "Combined take-home pay for everyone in the household.",
+      savingsLabel: "Savings available for a down payment",
+      savingsHelp: "Liquid savings only; not retirement funds.",
+      generateButton: "Generate the PDF",
+      generatingButton: "Generating...",
+    },
+    pdfPageLabel: "Page",
+    pdfFooterAttribution: "howaffordable.org · Open data · No tracking",
+    pdfCoverGeneratedLabel: "Generated",
+    pdfYourPriceLabel: "Max home price you can afford",
+    pdfMaxPriceLeadIn: "Your borrowing ceiling",
+    pdfCoverNarrative:
+      "Your max-affordable price is the lender ceiling on your income at the country's average mortgage rate, with a 36% DTI test. The pages that follow contextualize that number against the country median, the country's historical trajectory, and rent-vs-buy economics.",
+    pdfSection1Title: "Your snapshot",
+    pdfSection1Body:
+      "Maximum affordable price, monthly mortgage on the country median home, the gap from your max to the country median, and years to a typical down payment at your savings rate.",
+    pdfSection2Title: "Where the country sits",
+    pdfSection2Body:
+      "Country median home price, median household income, mortgage rate, and minimum down payment fraction.",
+    pdfSection3Title: "Across countries",
+    pdfSection3Body:
+      "Your relative position in your country's income distribution applied to other markets — same percentile, different markets.",
+    pdfHistoricalTitle: "How affordability evolved",
+    pdfHistoricalBody:
+      "Price-to-income ratio in your country across the period available in OECD/BIS data. Higher line means a tougher market for the median household.",
+    pdfHistoricalInsightTemplate:
+      "{country} price-to-income was {firstValue}× in {firstYear}. By {lastYear}: {lastValue}×. {direction} {magnitude}× over the period.",
+    pdfHistoricalNoData:
+      "No long-running historical series for this country. The snapshot above still applies.",
+    pdfTakeawaysTitle: "What this means in practice",
+    pdfTakeawaysIntro:
+      "Personal reads of your snapshot, given the burden, ratio, and country regime.",
+    pdfTakeawaysAffordable:
+      "Your country's median home is well within reach: prices sit below 4× the median income. The remaining decisions are about where to buy and how aggressively to leverage.",
+    pdfTakeawaysStretch:
+      "Your country's median home is a stretch: at 4-6× income, buying typically requires either a strong down payment, a long mortgage term, or accepting a smaller / further-out home.",
+    pdfTakeawaysUnaffordable:
+      "Your country's median home is unaffordable by Demographia's classification: 6-10× income. Buying often requires family help, dual income, or accepting a meaningful downgrade in size or location.",
+    pdfTakeawaysOutOfReach:
+      "Above 10× income, owning the country median is effectively out of reach without significant outside capital. Watch local rent-to-price ratios; renting may be the better long-term move.",
+    pdfTakeawaysBuyVsRent:
+      "Below ~15× annual rent, buying typically beats renting on a 5+ year hold. Above ~25×, renting clearly wins. The buy-vs-rent calculus also depends on hold period and price growth, not just the ratio.",
+    pdfMethodologyTitle: "Methodology",
+    pdfMethodologyBody:
+      "Median home prices and price-to-income from OECD Affordable Housing Database and BIS Selected Property Price Series. Mortgage rates from ECB SDW (eurozone), Federal Reserve H.15 (US), Bank of England (UK), and national central banks elsewhere. Demographia bands used for the affordability classification. Computation runs entirely client-side; nothing is sent to a server.",
+    pdfTipTitle: "Like this report?",
+    pdfTipBody:
+      "It's free and ad-free. If it's useful, a small Ko-fi tip lets me keep building open educational tools.",
+    pdfFilenameTemplate: "howaffordable-{country}-{date}.pdf",
   },
   common: {
     perYear: "年あたり",

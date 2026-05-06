@@ -14,6 +14,7 @@ export interface Dictionary {
   readonly nav: {
     readonly home: string;
     readonly compare: string;
+    readonly report: string;
     readonly methodology: string;
     readonly faq: string;
     readonly about: string;
@@ -24,6 +25,28 @@ export interface Dictionary {
     readonly headline: string;
     readonly subheadline: string;
     readonly chooseCountryLabel: string;
+  };
+  /** Country-landing page (`/{country}`) strings. */
+  readonly country: {
+    readonly headlineTemplate: string;
+    readonly verdictAffordable: string;
+    readonly verdictStretch: string;
+    readonly verdictUnaffordable: string;
+    readonly verdictOutOfReach: string;
+    /** "The country median home in {country} costs {price} and the median household earns {income} — a price-to-income ratio of {ratio}×. Ranked {rank} of {total} for housing cost relative to income." */
+    readonly bodyTemplate: string;
+    readonly statMedianHomeLabel: string;
+    readonly statMedianHomeSub: string;
+    readonly statMedianIncomeLabel: string;
+    readonly statMedianIncomeSub: string;
+    readonly statMortgageLabel: string;
+    readonly statMortgageSub: string;
+    readonly historyHeading: string;
+    /** "Price-to-income peaked at {peakValue}× in {peakYear}. Today: {todayValue}×. {shift} The OECD average over the same period went from {oecdStart}× in {oecdYear} to {oecdToday}× today." */
+    readonly historyBodyTemplate: string;
+    readonly historyShiftTemplate: string;
+    readonly calculatorHeadingTemplate: string;
+    readonly calculatorSubheadingTemplate: string;
   };
   readonly calculator: {
     readonly heading: string;
@@ -114,6 +137,55 @@ export interface Dictionary {
     readonly github: string;
     readonly support: string;
     readonly buildDateTemplate: string;
+  };
+  readonly report: {
+    readonly title: string;
+    readonly subtitle: string;
+    readonly preparedFor: string;
+    readonly landingTitle: string;
+    readonly landingFreeBadge: string;
+    readonly landingFeatureA: { readonly title: string; readonly body: string };
+    readonly landingFeatureB: { readonly title: string; readonly body: string };
+    readonly landingFeatureC: { readonly title: string; readonly body: string };
+    readonly landingPicker: {
+      readonly title: string;
+      readonly subtitle: string;
+      readonly countryLabel: string;
+      readonly incomeLabel: string;
+      readonly incomeHelp: string;
+      readonly savingsLabel: string;
+      readonly savingsHelp: string;
+      readonly generateButton: string;
+      readonly generatingButton: string;
+    };
+    readonly pdfPageLabel: string;
+    readonly pdfFooterAttribution: string;
+    readonly pdfCoverGeneratedLabel: string;
+    readonly pdfYourPriceLabel: string;
+    readonly pdfMaxPriceLeadIn: string;
+    readonly pdfCoverNarrative: string;
+    readonly pdfSection1Title: string;
+    readonly pdfSection1Body: string;
+    readonly pdfSection2Title: string;
+    readonly pdfSection2Body: string;
+    readonly pdfSection3Title: string;
+    readonly pdfSection3Body: string;
+    readonly pdfHistoricalTitle: string;
+    readonly pdfHistoricalBody: string;
+    readonly pdfHistoricalInsightTemplate: string;
+    readonly pdfHistoricalNoData: string;
+    readonly pdfTakeawaysTitle: string;
+    readonly pdfTakeawaysIntro: string;
+    readonly pdfTakeawaysAffordable: string;
+    readonly pdfTakeawaysStretch: string;
+    readonly pdfTakeawaysUnaffordable: string;
+    readonly pdfTakeawaysOutOfReach: string;
+    readonly pdfTakeawaysBuyVsRent: string;
+    readonly pdfMethodologyTitle: string;
+    readonly pdfMethodologyBody: string;
+    readonly pdfTipTitle: string;
+    readonly pdfTipBody: string;
+    readonly pdfFilenameTemplate: string;
   };
   readonly common: {
     readonly perYear: string;

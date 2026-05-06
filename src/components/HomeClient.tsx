@@ -2,6 +2,8 @@
 
 import { useDictionary } from "./LanguageProvider";
 import AffordabilityCalculator from "./AffordabilityCalculator";
+import StatisticsSection from "./StatisticsSection";
+import DataProvenanceBanner from "./DataProvenanceBanner";
 import { GLOBAL_ANCHORS, type CountryCode } from "@/data/housing-data";
 
 interface Props {
@@ -31,7 +33,10 @@ export default function HomeClient({ initialCountry }: Props) {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+      <StatisticsSection />
+      <DataProvenanceBanner />
+
+      <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-8">
         <div className="max-w-3xl mx-auto">
           <AffordabilityCalculator initialCountry={initialCountry} />
         </div>
